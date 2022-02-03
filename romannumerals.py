@@ -58,39 +58,3 @@ class RomanNumeral(object):
             base_ten -= 1
 
         self.numeral = ''.join(numerals)
-
-
-class RomanNumeralXCalculator(object):
-    """ Class for generating count of occurrances of "X" for Roman Numerals in given range."""
-
-    def __init__(self, range_min, range_max, debug=False):
-        """ Sets initial values to use for calculations and then runs them.
-            Parameters:
-            min (Int) - the number at which to start the range (inclusive)
-            max (Int) - the number at which to end the range (inclusive)
-            debug (Bool) - set to true if you want to verify the generated numerals and their "X" counts
-
-            Returns: Int
-        """
-        self.range_min = range_min
-        self.range_max = range_max
-        self.debug = debug
-        self.x_count = 0
-        self.count_x_for_range()
-
-    def count_x_for_range(self):
-        """ Calculate the number of times the character 'X' appears for all Roman Numerals in given range.
-
-        """
-        numerals = [RomanNumeral(numeral) for numeral in range(self.range_min, self.range_max + 1)]
-        x_count = 0
-        for numeral in numerals:
-            x_in_numeral = len([i for i in numeral.numeral if i == 'X'])
-            if self.debug:
-                print('numeral: {} (x: {})'.format(numeral, x_in_numeral))
-            x_count += x_in_numeral
-        self.x_count = x_count
-
-
-numerals = RomanNumeralXCalculator(1, 2660)
-print(numerals.x_count)
